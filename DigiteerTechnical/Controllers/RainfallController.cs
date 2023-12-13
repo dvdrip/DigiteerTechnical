@@ -69,21 +69,6 @@ namespace DigiteerTechnical.Controllers
             }
 
             return myReadings;
-
-            //var readings = new List<RainfallReading>();
-
-            //for (int i = 0; i < count; i++)
-            //{
-            //    var reading = new RainfallReading
-            //    {
-            //        DateMeasured = DateTime.UtcNow.AddDays(-i),
-            //        AmountMeasured = (decimal)new Random().NextDouble() * 100
-            //    };
-
-            //    readings.Add(reading);
-            //}
-
-            //return readings;
         }
     }
 }

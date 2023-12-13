@@ -2,39 +2,41 @@
 {
     public class RainfallApi
     {
-        public string version { get; set; }
-        public string title { get; set; }
-        public Contact contact { get; set; }
-        public string description { get; set; }
+        public string Version { get; set; }
+        public string Title { get; set; }
+        public Contact Contact { get; set; }
+        public string Description { get; set; }
     }
 
     public class Contact
     {
-        public string name { get; set; }
-        public string url { get; set; }
+        public string Name { get; set; }
+        public string Url { get; set; }
     }
 
     public class RainfallReadingResponse
     {
-        public List<RainfallReading> readings { get; set; }
+        //public string stationId { get; set; }
+        //public int count { get; set; }
+        public List<RainfallReading> Readings { get; set; }
     }
 
     public class RainfallReading
     {
-        public DateTime dateMeasured { get; set; }
-        public decimal amountMeasured { get; set; }
+        public DateTime DateMeasured { get; set; }
+        public decimal AmountMeasured { get; set; }
     }
 
     public class ErrorResponse
     {
-        public string message { get; set; }
-        public List<ErrorDetail> detail { get; set; }
+        public string Message { get; set; }
+        public List<ErrorDetail> Detail { get; set; }
     }
 
     public class ErrorDetail
     {
-        public string propertyName { get; set; }
-        public string message { get; set; }
+        public string PropertyName { get; set; }
+        public string Message { get; set; }
     }
 
 }

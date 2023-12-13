@@ -1,6 +1,6 @@
 ﻿namespace DigiteerTechnical.Models
 {
-    public class RainfallData
+    public class RainfallLocal
     {
         public string Version { get; set; }
         public string Title { get; set; }
@@ -16,8 +16,6 @@
 
     public class RainfallReadingResponse
     {
-        //public string stationId { get; set; }
-        //public int count { get; set; }
         public List<RainfallReading> Readings { get; set; }
     }
 

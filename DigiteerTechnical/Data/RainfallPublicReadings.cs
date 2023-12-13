@@ -6,7 +6,7 @@ namespace DigiteerTechnical.Data
 {
     public class RainfallPublicReadings
     {
-        public RainfallRoot? GetRainfallAPIReadings(string _id, string _param, int _count)
+        public RainfallPublic? GetRainfallAPIReadings(string _id, string _param, int _count)
         {
             string apiUrl = $"https://environment.data.gov.uk/flood-monitoring/id/stations/{_id}/readings";
             string param = _param;
@@ -22,7 +22,7 @@ namespace DigiteerTechnical.Data
 
             if (response.IsSuccessful)
             {
-                RainfallRoot root = JsonConvert.DeserializeObject<RainfallRoot>(response.Content);
+                RainfallPublic root = JsonConvert.DeserializeObject<RainfallPublic>(response.Content);
 
                 return root;
             }

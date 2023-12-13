@@ -9,11 +9,11 @@ namespace DigiteerTechnical.Data
         {
             RainfallPublicReadings readings = new RainfallPublicReadings();
             string parameterSample = "rainfall";
-            var x = readings.GetRainfallAPIReadings(stationId, parameterSample, count);
+            var rainyData = readings.GetRainfallAPIReadings(stationId, parameterSample, count);
 
             List<RainfallReading> myReadings = new List<RainfallReading>();
 
-            foreach (var item in x.items)
+            foreach (var item in rainyData.items)
             {
                 RainfallReading reading = new RainfallReading
                 {

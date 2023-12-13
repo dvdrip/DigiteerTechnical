@@ -2,7 +2,7 @@
 
 namespace DigiteerTechnical.Models
 {
-    public class RainfallRoot
+    public class RainfallPublic
     {
         [JsonProperty("@context")]
         public string context { get; set; }

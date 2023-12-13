@@ -7,7 +7,7 @@ namespace DigiteerTechnical.Controllers
     [ApiController]
     public class RainfallController : ControllerBase
     {
-        [HttpGet("raifall/id/{stationId}/readings")]
+        [HttpGet("rainfall/id/{stationId}/readings")]
         public IActionResult GetRainfallReadings(string stationId, [FromQuery] int count = 10)
         {
             try
@@ -20,7 +20,7 @@ namespace DigiteerTechnical.Controllers
                     return BadRequest(new ErrorResponse
                     {
                         Message = "Invalid request",
-                        Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Test Message" } }
+                        Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Make sure count is within 1 to 100" } }
                     });
                 }
 
@@ -30,7 +30,7 @@ namespace DigiteerTechnical.Controllers
                     return NotFound(new ErrorResponse
                     {
                         Message = "No readings found for the specified stationId",
-                        Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Test Message" } }
+                        Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Station ID does not exist or format is invalid" } }
                     });
                 }
 
@@ -42,7 +42,7 @@ namespace DigiteerTechnical.Controllers
                 return StatusCode(500, new ErrorResponse
                 {
                     Message = "Internal server error: " + ex.Message,
-                    Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Test Message" } }
+                    Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Contact developer" } }
                 });
             }
         }

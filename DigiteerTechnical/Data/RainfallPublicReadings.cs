@@ -4,11 +4,11 @@ using RestSharp;
 
 namespace DigiteerTechnical.Data
 {
-    public class RainfallReadings
+    public class RainfallPublicReadings
     {
-        public RainfallRoot GetRainfallAPIReadings(string _param, int _count)
+        public RainfallRoot? GetRainfallAPIReadings(string _id, string _param, int _count)
         {
-            string apiUrl = "https://environment.data.gov.uk/flood-monitoring/data/readings";
+            string apiUrl = $"https://environment.data.gov.uk/flood-monitoring/id/stations/{_id}/readings";
             string param = _param;
             int count = _count;
 

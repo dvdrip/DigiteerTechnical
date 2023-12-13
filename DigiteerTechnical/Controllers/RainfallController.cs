@@ -1,4 +1,5 @@
-﻿using DigiteerTechnical.Models;
+﻿using DigiteerTechnical.Data;
+using DigiteerTechnical.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace DigiteerTechnical.Controllers
             try
             {
                 var readings = GenerateRainfallReadings(stationId, count);
-                
+
                 //error 400
                 if (count < 1 || count > 100)
                 {
@@ -50,20 +51,39 @@ namespace DigiteerTechnical.Controllers
         //Sample readings
         private List<RainfallReading> GenerateRainfallReadings(string stationId, int count)
         {
-            var readings = new List<RainfallReading>();
+            RainfallPublicReadings readings = new RainfallPublicReadings();
+            string parameterSample = "rainfall";
+            var x = readings.GetRainfallAPIReadings(stationId, parameterSample, count);
 
-            for (int i = 0; i < count; i++)
+            List<RainfallReading> myReadings = new List<RainfallReading>();
+
+            foreach (var item in x.items)
             {
-                var reading = new RainfallReading
+                RainfallReading reading = new RainfallReading
                 {
-                    DateMeasured = DateTime.UtcNow.AddDays(-i),
-                    AmountMeasured = (decimal)new Random().NextDouble() * 100
+                    DateMeasured = item.dateTime,
+                    AmountMeasured = (decimal)item.value
                 };
 
-                readings.Add(reading);
+                myReadings.Add(reading);
             }
 
-            return readings;
+            return myReadings;
+
+            //var readings = new List<RainfallReading>();
+
+            //for (int i = 0; i < count; i++)
+            //{
+            //    var reading = new RainfallReading
+            //    {
+            //        DateMeasured = DateTime.UtcNow.AddDays(-i),
+            //        AmountMeasured = (decimal)new Random().NextDouble() * 100
+            //    };
+
+            //    readings.Add(reading);
+            //}
+
+            //return readings;
         }
     }
 }

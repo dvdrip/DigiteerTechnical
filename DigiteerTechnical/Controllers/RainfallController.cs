@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DigiteerTechnical.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class RainfallController : ControllerBase
     {
@@ -14,16 +13,36 @@ namespace DigiteerTechnical.Controllers
             try
             {
                 var readings = GenerateRainfallReadings(stationId, count);
+                
+                //error 400
+                if (count < 1 || count > 100)
+                {
+                    return BadRequest(new ErrorResponse
+                    {
+                        Message = "Invalid request",
+                        Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Test Message" } }
+                    });
+                }
+
+                //error 404
+                if (readings == null)
+                {
+                    return NotFound(new ErrorResponse
+                    {
+                        Message = "No readings found for the specified stationId",
+                        Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Test Message" } }
+                    });
+                }
 
                 return Ok(new RainfallReadingResponse { Readings = readings });
             }
             catch (Exception ex)
             {
-
+                //error 500
                 return StatusCode(500, new ErrorResponse
                 {
-                    Message = "Internal server error",
-                    Detail = null
+                    Message = "Internal server error: " + ex.Message,
+                    Detail = new List<ErrorDetail> { new ErrorDetail { PropertyName = "Test Details", Message = "Test Message" } }
                 });
             }
         }

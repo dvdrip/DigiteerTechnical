@@ -1,6 +1,6 @@
 ﻿namespace DigiteerTechnical.Models
 {
-    public class RainfallApi
+    public class RainfallData
     {
         public string Version { get; set; }
         public string Title { get; set; }

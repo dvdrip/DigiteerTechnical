@@ -13,7 +13,9 @@ namespace DigiteerTechnical.Controllers
         {
             try
             {
-                var readings = GenerateRainfallReadings(stationId, count);
+                RainfallLocalReadings rainfallLocalReadings = new RainfallLocalReadings();
+
+                var readings = rainfallLocalReadings.GenerateRainfallReadings(stationId, count);
 
                 //error 400
                 if (count < 1 || count > 100)
@@ -48,27 +50,5 @@ namespace DigiteerTechnical.Controllers
             }
         }
 
-        //Sample readings
-        private List<RainfallReading> GenerateRainfallReadings(string stationId, int count)
-        {
-            RainfallPublicReadings readings = new RainfallPublicReadings();
-            string parameterSample = "rainfall";
-            var x = readings.GetRainfallAPIReadings(stationId, parameterSample, count);
-
-            List<RainfallReading> myReadings = new List<RainfallReading>();
-
-            foreach (var item in x.items)
-            {
-                RainfallReading reading = new RainfallReading
-                {
-                    DateMeasured = item.dateTime,
-                    AmountMeasured = (decimal)item.value
-                };
-
-                myReadings.Add(reading);
-            }
-
-            return myReadings;
-        }
     }
 }

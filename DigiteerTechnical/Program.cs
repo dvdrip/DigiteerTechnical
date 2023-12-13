@@ -16,6 +16,7 @@ var app = builder.Build();
 //    app.UseSwaggerUI();
 //}
 
+//show swagger ui for testing
 app.UseSwagger();
 app.UseSwaggerUI();
 
